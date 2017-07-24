@@ -20,19 +20,19 @@ public Comment(String comment, int postId, int userId) {
 
 }
 
-// public int getId() {
-//   return id;
-// }
-//
-// public String getComment() {
-//   return comment
-// }
-//
-// public int postId() {
-//   return comment;
-// }
-//
-// public int userId() {
-//   return comment;
-// }
+public int getId() {
+  return id;
+}
+
+public String getComment() {
+  return comment;
+}
+
+public int getPostId() {
+  return postId;
+}
+
+public int getUserId() {
+  return userId;
+}
 }
