@@ -1,4 +1,5 @@
 import org.sql2o.*;
+import java.sql.Timestamp;
 
 public class Post {
   private int id;
@@ -7,6 +8,7 @@ public class Post {
   private String content;
   private String subName;
   private int votes;
+  private Timestamp time;
 
   //CONSTRUCTOR
   public Post(String type, String title, String content, String subName){
@@ -49,7 +51,7 @@ public class Post {
   //DATABASE METHODS
   public void save(){
     try(Connection con = DB.sql2o.open()){
-      String sql = "INSERT INTO posts(title, type, content, votes, subname) VALUES (:title, :type, :content, :votes, :subname);";
+      String sql = "INSERT INTO posts(title, type, content, votes, subname, time) VALUES (:title, :type, :content, :votes, :subname, now());";
 
       this.id = (int) con.createQuery(sql, true)
         .addParameter("title", this.title)
