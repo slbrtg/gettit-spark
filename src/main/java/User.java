@@ -8,12 +8,14 @@ public class User {
   private String password;
   private List<String> subs;
 
+  //CONSTRUCTOR
   public User(String username, String password){
     this.username = username;
     this.password = password;
     this.subs = new ArrayList<String>();
   }
 
+  //GETTER/SETTER
   public int getId(){
     return id;
   }
@@ -35,6 +37,7 @@ public class User {
     }
   }
 
+  //DATABASE METHODS
   public void save(){
     try(Connection con = DB.sql2o.open()){
       String sql = "INSERT INTO users(username, password) VALUES(:username, :password);";
@@ -43,6 +46,23 @@ public class User {
         .addParameter("password", this.password)
         .executeUpdate()
       .getKey();
+    }
+  }
+
+  public static List<User> all(){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "SELECT * FROM users;";
+      return con.createQuery(sql).executeAndFetch(User.class);
+    }
+  }
+
+  public static User find(String username){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "SELECT * FROM users WHERE username=:username;";
+      User user = con.createQuery(sql)
+        .addParameter("username", username)
+        .executeAndFetchFirst(User.class);
+      return user;
     }
   }
 }

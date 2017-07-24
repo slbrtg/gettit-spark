@@ -25,4 +25,19 @@ public class UserTest {
     testUser.save();
     assertTrue(testUser.getId() > 0);
   }
+
+  @Test
+  public void all_returnsAllUsers_true(){
+    User testUser = new User("red", "red");
+    testUser.save();
+    assertEquals(User.all().get(0).getId(), testUser.getId());
+  }
+
+  @Test
+  public void find_returnsCorrectUsers_true(){
+    User testUser = new User("red", "red");
+    testUser.save();
+    User testUser2 = User.find(testUser.getUsername());
+    assertEquals(testUser2.getId(), testUser.getId());
+  }
 }
