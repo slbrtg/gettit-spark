@@ -1,0 +1,15 @@
+#sg-header-area {
+    background-color: #f0f0f0;
+    white-space: nowrap;
+    text-transform: uppercase;
+    border-bottom: 1px solid gray;
+    font-size: 90%;
+    height: 18px;
+    line-height: 18px;
+}
+
+#sg-header-area .width-clip {
+    position: absolute;
+    left: 0;
+    right: 0;
+}
