@@ -44,8 +44,8 @@ public class UserTest {
   @Test
   public void delete_returnsNullOnFindDeletedUser_null(){
     User testUser = new User("red", "red");
-    testUser.save();
     String username = testUser.getUsername();
+    testUser.save();
     testUser.delete();
     assertEquals(null, User.find(username));
   }

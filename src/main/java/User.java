@@ -86,4 +86,14 @@ public class User {
       return user;
     }
   }
+
+  public static User findByID(int id){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "SELECT * FROM users WHERE id=:id;";
+      User user = con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetchFirst(User.class);
+      return user;
+    }
+  }
 }

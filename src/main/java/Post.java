@@ -1,5 +1,7 @@
 import org.sql2o.*;
 import java.sql.Timestamp;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Post {
   private int id;
@@ -61,6 +63,52 @@ public class Post {
         .addParameter("subname", this.subName)
         .executeUpdate()
       .getKey();
+    }
+  }
+
+  public void update(String content){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "UPDATE posts SET content=:content where id=:id;";
+      con.createQuery(sql)
+        .addParameter("content", this.content)
+        .addParameter("id", this.id)
+        .executeUpdate();
+    }
+  }
+
+  public void delete(){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "DELETE FROM posts WHERE id=:id;";
+      con.createQuery(sql)
+        .addParameter("id", this.id)
+        .executeUpdate();
+    }
+  }
+
+  public static List<Post> all(){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "SELECT * FROM posts;";
+      return con.createQuery(sql).executeAndFetch(Post.class);
+    }
+  }
+
+  public static List<Post> find(String title){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "SELECT * FROM posts WHERE title=:title;";
+      List<Post> searchResults =  con.createQuery(sql)
+        .addParameter("title", title)
+        .executeAndFetch(Post.class);
+      return searchResults;
+    }
+  }
+
+  public static Post findByID(int id){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "SELECT * FROM posts WHERE id=:id;";
+      Post post = con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetchFirst(Post.class);
+      return post;
     }
   }
 }
