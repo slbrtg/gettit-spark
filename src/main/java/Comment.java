@@ -8,18 +8,18 @@ public class Comment {
   private int id;
   private String comment;
   private int postId;
-  private int userId;
+  private String username;
   private Timestamp time;
 
 
-public Comment(String comment, int postId, int userId) {
+public Comment(String comment, int postId, String username) {
   this.id = id;
   this.comment = comment;
   this.postId = postId;
-  this.userId = userId;
+  this.username = username;
 }
 public static List<Comment> all() {
-  String sql = "SELECT id, comment, postId, userId, time FROM comments";
+  String sql = "SELECT id, comment, postId, username, time FROM comments";
   try(Connection con = DB.sql2o.open()) {
     return con.createQuery(sql).executeAndFetch(Comment.class);
   }
@@ -28,11 +28,11 @@ public static List<Comment> all() {
 //Create Save Method
 public void save() {
   try(Connection con = DB.sql2o.open()) {
-  String sql = "INSERT INTO comments(comment, postId, userId, time) VALUES (:comment, :postId, :userId, now());";
+  String sql = "INSERT INTO comments(comment, postId, username, time) VALUES (:comment, :postId, :username, now());";
     this.id = (int) con.createQuery(sql, true)
       .addParameter("comment", this.comment)
       .addParameter("postId", this.postId)
-      .addParameter("userId", this.userId)
+      .addParameter("username", this.username)
       .executeUpdate()
       .getKey();
     }
@@ -76,7 +76,7 @@ public boolean equals(Object otherComment) {
     return this.getId() == newComment.getId() &&
            this.getComment().equals(newComment.getComment()) &&
            this.getPostId() == newComment.getPostId() &&
-           this.getUserId() == newComment.getUserId();
+           this.getUsername().equals(newComment.getUsername());
         }
     }
 
@@ -92,8 +92,8 @@ public boolean equals(Object otherComment) {
     return postId;
   }
 
-  public int getUserId() {
-    return userId;
+  public String getUsername() {
+    return username;
   }
 
   public Timestamp time(){

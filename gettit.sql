@@ -41,7 +41,7 @@ CREATE TABLE comments (
     id integer NOT NULL,
     comment character varying,
     postid integer,
-    userid integer,
+    username character varying,
     "time" timestamp without time zone
 );
 
@@ -67,6 +67,44 @@ ALTER TABLE comments_id_seq OWNER TO "Guest";
 --
 
 ALTER SEQUENCE comments_id_seq OWNED BY comments.id;
+
+
+--
+-- Name: posts; Type: TABLE; Schema: public; Owner: Guest
+--
+
+CREATE TABLE posts (
+    id integer NOT NULL,
+    title character varying,
+    type character varying,
+    content character varying,
+    votes integer,
+    subname character varying,
+    "time" timestamp without time zone
+);
+
+
+ALTER TABLE posts OWNER TO "Guest";
+
+--
+-- Name: posts_id_seq; Type: SEQUENCE; Schema: public; Owner: Guest
+--
+
+CREATE SEQUENCE posts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE posts_id_seq OWNER TO "Guest";
+
+--
+-- Name: posts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Guest
+--
+
+ALTER SEQUENCE posts_id_seq OWNED BY posts.id;
 
 
 --
@@ -105,6 +143,41 @@ ALTER SEQUENCE subs_id_seq OWNED BY subs.id;
 
 
 --
+-- Name: users; Type: TABLE; Schema: public; Owner: Guest
+--
+
+CREATE TABLE users (
+    id integer NOT NULL,
+    username character varying,
+    password character varying,
+    subs text[]
+);
+
+
+ALTER TABLE users OWNER TO "Guest";
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: Guest
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE users_id_seq OWNER TO "Guest";
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Guest
+--
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
 -- Name: id; Type: DEFAULT; Schema: public; Owner: Guest
 --
 
@@ -115,14 +188,28 @@ ALTER TABLE ONLY comments ALTER COLUMN id SET DEFAULT nextval('comments_id_seq':
 -- Name: id; Type: DEFAULT; Schema: public; Owner: Guest
 --
 
+ALTER TABLE ONLY posts ALTER COLUMN id SET DEFAULT nextval('posts_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: Guest
+--
+
 ALTER TABLE ONLY subs ALTER COLUMN id SET DEFAULT nextval('subs_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: Guest
+--
+
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
 --
 -- Data for Name: comments; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY comments (id, comment, postid, userid, "time") FROM stdin;
+COPY comments (id, comment, postid, username, "time") FROM stdin;
 \.
 
 
@@ -131,6 +218,21 @@ COPY comments (id, comment, postid, userid, "time") FROM stdin;
 --
 
 SELECT pg_catalog.setval('comments_id_seq', 1, false);
+
+
+--
+-- Data for Name: posts; Type: TABLE DATA; Schema: public; Owner: Guest
+--
+
+COPY posts (id, title, type, content, votes, subname, "time") FROM stdin;
+\.
+
+
+--
+-- Name: posts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
+--
+
+SELECT pg_catalog.setval('posts_id_seq', 1, false);
 
 
 --
@@ -149,11 +251,34 @@ SELECT pg_catalog.setval('subs_id_seq', 1, false);
 
 
 --
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: Guest
+--
+
+COPY users (id, username, password, subs) FROM stdin;
+\.
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
+--
+
+SELECT pg_catalog.setval('users_id_seq', 1, false);
+
+
+--
 -- Name: comments_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest
 --
 
 ALTER TABLE ONLY comments
     ADD CONSTRAINT comments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: posts_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest
+--
+
+ALTER TABLE ONLY posts
+    ADD CONSTRAINT posts_pkey PRIMARY KEY (id);
 
 
 --
@@ -170,6 +295,22 @@ ALTER TABLE ONLY subs
 
 ALTER TABLE ONLY subs
     ADD CONSTRAINT subs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users_username_key; Type: CONSTRAINT; Schema: public; Owner: Guest
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_username_key UNIQUE (username);
 
 
 --
