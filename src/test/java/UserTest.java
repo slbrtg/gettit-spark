@@ -40,4 +40,13 @@ public class UserTest {
     User testUser2 = User.find(testUser.getUsername());
     assertEquals(testUser2.getId(), testUser.getId());
   }
+
+  @Test
+  public void delete_returnsNullOnFindDeletedUser_null(){
+    User testUser = new User("red", "red");
+    testUser.save();
+    String username = testUser.getUsername();
+    testUser.delete();
+    assertEquals(null, User.find(username));
+  }
 }

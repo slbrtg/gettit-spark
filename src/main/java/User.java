@@ -49,6 +49,27 @@ public class User {
     }
   }
 
+  public void update(String username){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "UPDATE users SET username=:username where id=:id;";
+      con.createQuery(sql)
+        .addParameter("username", this.username)
+        .addParameter("id", this.id)
+        .executeUpdate();
+    }
+  }
+
+  public void delete(){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "DELETE FROM users WHERE id=:id;";
+      con.createQuery(sql)
+        .addParameter("id", this.id)
+        .executeUpdate();
+    }
+  }
+
+
+
   public static List<User> all(){
     try(Connection con = DB.sql2o.open()){
       String sql = "SELECT * FROM users;";
