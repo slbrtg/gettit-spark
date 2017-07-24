@@ -13,7 +13,7 @@ public class Comment {
 
 
 public Comment(String comment, int postId, int userId) {
-
+  this.id = id;
   this.comment = comment;
   this.postId = postId;
   this.userId = userId;
@@ -38,26 +38,35 @@ public void save() {
     }
   }
 
+  public static Comment find(int id) {
+    try(Connection con = DB.sql2o.open()){
+      String sql = "SELECT * FROM comments WHERE id=:id";
+      Comment comment = con.createQuery(sql)
+      .addParameter("id", id)
+      .executeAndFetchFirst(Comment.class);
+    return comment;
+    }
+  }
 
-public int getId() {
-  return id;
+  public void update(String comment) {
+  try(Connection con = DB.sql2o.open()) {
+    String sql = "UPDATE comments SET comment = :comment WHERE id=:id";
+    con.createQuery(sql)
+      .addParameter("comment", comment)
+       .addParameter("id", this.id)
+      .executeUpdate();
+  }
 }
 
-public String getComment() {
-  return comment;
+public static void delete(int id) {
+  try(Connection con = DB.sql2o.open()) {
+    String sql = "DELETE FROM comments WHERE id = :id;";
+    con.createQuery(sql)
+      .addParameter("id", id)
+      .executeUpdate();
+  }
 }
 
-public int getPostId() {
-  return postId;
-}
-
-public int getUserId() {
-  return userId;
-}
-
-public Timestamp time(){
-   return time;
- }
 @Override
 public boolean equals(Object otherComment) {
   if(!(otherComment instanceof Comment)) {
@@ -71,5 +80,24 @@ public boolean equals(Object otherComment) {
         }
     }
 
+  public int getId() {
+    return id;
+  }
+
+  public String getComment() {
+    return comment;
+  }
+
+  public int getPostId() {
+    return postId;
+  }
+
+  public int getUserId() {
+    return userId;
+  }
+
+  public Timestamp time(){
+     return time;
+ }
 
 }
