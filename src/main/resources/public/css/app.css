@@ -1,15 +1,197 @@
+.public-page{
+  display: grid;
+  grid-template-columns: 80% 20%;
+}
+
+
+.login {
+  background-color: white;
+  width: 350px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  margin-top: 5%;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+}
+
+.loginheading{
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.loginbottomtext{
+  text-align: center;
+  margin-top: 20px;
+}
+
 #sg-header-area {
     background-color: #f0f0f0;
     white-space: nowrap;
     text-transform: uppercase;
     border-bottom: 1px solid gray;
     font-size: 90%;
-    height: 18px;
-    line-height: 18px;
+    height: 30px;
+    line-height: 5px;
+    padding: 0;
+    margin: 0;
 }
 
 #sg-header-area .width-clip {
     position: absolute;
     left: 0;
     right: 0;
+}
+
+#sg-header-area .dropdown.srdrop {
+    float: left;
+    padding-left: 5px;
+}
+
+.dropdown.srdrop .selected {
+    background: none no-repeat scroll center right;
+    background-image: url(../droparrowgray.gif);
+    display: inline-block;
+    vertical-align: bottom;
+    padding-right: 21px;
+    padding-left: 5px;
+    color: black;
+    font-weight: normal;
+    margin-left: -5px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+#sg-header-area .drop-choices.srdrop {
+    margin-top: 0;
+    margin-left: 5px;
+}
+
+.sgdrop .choice.bottom-option {
+    font-style: italic;
+    border-top: 1px dotted #369;
+}
+
+#sg-header-area .sg-list {
+    overflow: hidden;
+}
+
+.flat-list sg-bar hover{
+    list-style-type: none;
+    display: inline;
+}
+
+.flat-list li, .flat-list form {
+    display: inline;
+    white-space: nowrap;
+}
+
+.separator {
+    color: gray;
+    margin: 0px .7ex 0px .7ex;
+    cursor: default;
+}
+
+#sg-more-link {
+    color: black;
+    background-color: #f0f0f0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 0 5px 0 15px;
+    font-weight: bold;
+    margin: 0;
+}
+
+#header-bottom-left {
+    font-size: larger;
+}
+
+#header-img.default-header {
+    text-indent: -9999px;
+    background-image: url(sprite-reddit.6Om8v6KMv28.png);
+    background-position: 0px -1323px;
+    background-repeat: no-repeat;
+    height: 40px;
+    width: 120px;
+    display: inline-block;
+    vertical-align: bottom;
+    margin-bottom: 3px;
+}
+
+.tabmenu {
+    list-style-type: none;
+    white-space: nowrap;
+    display: inline-block;
+    margin-top: 5px;
+    vertical-align: bottom;
+    padding: 0;
+}
+
+.tabmenu li {
+    display: inline;
+    font-weight: bold;
+    margin: 0px 3px;
+}
+
+.tabmenu li.selected a {
+    color: orangered;
+    background-color: white;
+    border: 1px solid #5f99cf;
+    border-bottom: 1px solid white;
+    z-index: 100;
+}
+
+#header-bottom-right {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    background-color: #EFF7FF;
+    padding: 4px;
+    line-height: 12px;
+    border-top-left-radius: 7px;
+}
+
+.user {
+    color: gray;
+}
+
+a {
+    text-decoration: none;
+    color: #369;
+}
+
+.separator {
+    color: gray;
+    margin: 0px .7ex 0px .7ex;
+    cursor: default;
+}
+
+.side {
+    float: right;
+    background-color: white;
+    margin: 0px 5px 0 5px;
+    width: 300px;
+}
+
+.flat-list {
+    list-style-type: none;
+    display: inline;
+}
+
+.side .spacer {
+    margin: 7px 0 12px 0;
+}
+
+.flat-list li, .flat-list form {
+    display: inline;
+    white-space: nowrap;
+}
+
+.sg-bar .separator {
+    color: gray;
+}
+
+.content {
+    z-index: 1;
+    margin: 7px 5px 0px 5px;
 }

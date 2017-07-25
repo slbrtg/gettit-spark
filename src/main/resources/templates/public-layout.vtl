@@ -36,14 +36,14 @@
           <li class="selected"><a href="#" class="choice">placeholder</a></li>
         </ul>
       </div>
-      <div id="header-bottom-right">
+      <!-- <div id="header-bottom-right">
         <span class="user">"Want to join?" <a href="wwww.reddit.com/login" class="login-required">Log in or sign up</a> " in seconds."
         </span>
         <span class="separator">|</span>
         <ul class="flat-list hover">
           <li><a href="javascript:void(0)" class="pref-lang choice" onclick="return showlang();">English</a></li>
         </ul>
-      </div>
+      </div> -->
       <div class="side">
         <div class="spacer">
           <form action="#" id="search" role="search">
@@ -58,8 +58,32 @@
         </div>
       </div>
       <a name="content"></a>
-      <div class="content" role="main">
-        #parse( $template )
+
+      <div class="public-page">
+        <div class="home-content">
+          #parse( $template )
+        </div>
+        <div class="public-login">
+          <center>
+          <div class="login">
+            <h1 class="loginheading">Login</h1>
+            <form method="post" action="/user/authenticated">
+              <div class="form-group nameInput has-feedback">
+                <label for="userUsername">Username</label>
+                <input id="userUsername" class="form-control" type="text" name="userUsername">
+              </div>
+              <div class="form-group passwordInput has-feedback">
+                <label for="userPassword">Password</label>
+                <input id="userPassword" class="form-control" type="password" name="userPassword">
+              </div>
+              <button class="btn btn-primary" type="submit" name="button">Log in!</button>
+              <p class="loginbottomtext">Still don't have an account? <a href="new-user">Register</a></p>
+              <p class="loginbottomtext"><a href="admin-login">Admin login</a></p>
+            </form>
+            <!-- ©©© COPYRIGHT ©©©--><p class="text-muted loginbottomtext">© The Library of Things and Stuff</p>
+          </div>
+          </center>
+        </div>
       </div>
     </div>
     <!-- end inner template-->
