@@ -92,6 +92,16 @@ public class Post {
     }
   }
 
+  public static List<Post> allFromSub(String subname){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "SELECT * FROM posts WHERE subname=:subname;";
+      List<Post> allFromSub = con.createQuery(sql)
+        .addParameter("subname", subname)
+        .executeAndFetch(Post.class);
+      return allFromSub;
+    }
+  }
+
   public static List<Post> find(String title){
     try(Connection con = DB.sql2o.open()){
       String sql = "SELECT * FROM posts WHERE title=:title;";

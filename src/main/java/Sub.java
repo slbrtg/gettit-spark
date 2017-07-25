@@ -63,6 +63,16 @@ public class Sub {
       }
     }
 
+    public static Sub findByName(String name) {
+      try(Connection con = DB.sql2o.open()){
+        String sql = "SELECT * FROM subs WHERE name=:name";
+        Sub sub = con.createQuery(sql)
+        .addParameter("name", name)
+        .executeAndFetchFirst(Sub.class);
+      return sub;
+      }
+    }
+
     public void update(String name) {
     try(Connection con = DB.sql2o.open()) {
       String sql = "UPDATE subs SET name = :name WHERE id=:id";
