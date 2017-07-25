@@ -16,13 +16,33 @@
     right: 0;
 }
 
+#header-img {
+  background-image: url(/Reddit-Picture.png);
+}
+
+#index-img {
+  height: 50px;
+}
+
 #sg-header-left-ul{
   float: left;
   list-style: none;
   display: grid;
-  grid-template-columns: 30px 30px 30px 30px;
+  grid-template-columns: 40px 60px 30px 40px 40px;
   grid-gap: 25px;
 }
+
+
+#reddit-second-nav{
+  float: left;
+  list-style: none;
+  display: grid-inline;
+  grid-template-columns: 90px 40px 40px 40px 40px;
+  grid-gap: 35px;
+  background-color: #bedcf9;
+}
+
+
 
 #sg-header-left-ul a{
   color: black;
