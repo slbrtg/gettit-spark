@@ -1,14 +1,8 @@
-<!-- <h1>Title</h1>
 
-<span class="rank">1</span>
-
-<h3><a href="/">Add Animal to System</a></h3>
-<hr> -->
 <div class="home-page">
-  <div class="home-content">
-
-  </div>
-  <!-- <div class="login">
-
-  </div> -->
+#foreach ($post in $posts)
+  <h3><a href="/$post.getSubName()/$post.getId()">$post.getTitle()</a></h3>
+  <h5><a href="/$post.getSubName()">$post.getSubName()</a></h5>
+  <hr>
+#end
 </div>
