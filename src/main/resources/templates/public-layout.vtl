@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>gettit</title>
+    <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link rel='stylesheet' href='/css/app.css'>
+  </head>
+  <body>
+
+    <!-- begin inner template-->
+    <div class="container-fluid">
+      <div id="sg-header-area">
+        <div class="width-clip">
+          <div class="dropdown sgdrop" onclick="open_menu(this)">...</div>
+          <div class="drop-choices sgdrop" style="top: 18px; left: 0px;">...</div>
+          <div class="sg-list">
+            <ul class="flat-list sg-bar hover">..</ul>
+            <span class="separator">&nbsp;&nbsp;</span>
+            <ul class="flat-list sg-bar hover" id="sg-bar">
+              <li><span class="separator">-</span><a href="#" class="choice">placeholder</a></li>
+              <li><span class="separator">-</span><a href="#" class="choice">placeholder</a></li>
+              <li><span class="separator">-</span><a href="#" class="choice">placeholder</a></li>
+              <li><span class="separator">-</span><a href="#" class="choice">placeholder</a></li>
+              <li><span class="separator">-</span><a href="#" class="choice">placeholder</a></li>
+            </ul>
+          </div>
+          <a href="#" id="sg-more-link">more</a>
+        </div>
+      </div>
+      <div id="header-bottom-left>"<a href="/" id="header-img" class="default-header" title="">reddit.com</a>
+        <ul class="tabmenu">
+          <li class="selected"><a href="#" class="choice">placeholder</a></li>
+          <li class="selected"><a href="#" class="choice">placeholder</a></li>
+          <li class="selected"><a href="#" class="choice">placeholder</a></li>
+          <li class="selected"><a href="#" class="choice">placeholder</a></li>
+          <li class="selected"><a href="#" class="choice">placeholder</a></li>
+        </ul>
+      </div>
+      <!-- <div id="header-bottom-right">
+        <span class="user">"Want to join?" <a href="wwww.reddit.com/login" class="login-required">Log in or sign up</a> " in seconds."
+        </span>
+        <span class="separator">|</span>
+        <ul class="flat-list hover">
+          <li><a href="javascript:void(0)" class="pref-lang choice" onclick="return showlang();">English</a></li>
+        </ul>
+      </div> -->
+      <div class="side">
+        <div class="spacer">
+          <form action="#" id="search" role="search">
+            <input type="text" name="q"placeholder="search" tabindex="20">
+            <input type="submit" value tabindex="22">
+            <div id="searchxpando" class="infobar" style>
+              <div id="moresearchinfo" style><a href="#" id="search_hidemore">[-]</a>
+                <p>use the following search parameters to narrow your results:</p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <a name="content"></a>
+
+      <div class="public-page">
+        <div class="home-content">
+          #parse( $template )
+        </div>
+        <div class="public-login">
+          <center>
+          <div class="login">
+            <h1 class="loginheading">Login</h1>
+            <form method="post" action="/user/authenticated">
+              <div class="form-group nameInput has-feedback">
+                <label for="userUsername">Username</label>
+                <input id="userUsername" class="form-control" type="text" name="userUsername">
+              </div>
+              <div class="form-group passwordInput has-feedback">
+                <label for="userPassword">Password</label>
+                <input id="userPassword" class="form-control" type="password" name="userPassword">
+              </div>
+              <button class="btn btn-primary" type="submit" name="button">Log in!</button>
+              <p class="loginbottomtext">Still don't have an account? <a href="new-user">Register</a></p>
+              <p class="loginbottomtext"><a href="admin-login">Admin login</a></p>
+            </form>
+            <!-- ©©© COPYRIGHT ©©©--><p class="text-muted loginbottomtext">© The Library of Things and Stuff</p>
+          </div>
+          </center>
+        </div>
+      </div>
+    </div>
+    <!-- end inner template-->
+  </body>
+</html>
