@@ -44,28 +44,57 @@ public class App {
     // });
     //
     //
-    // //SIGNING UP
-    // post("/new-user", (request, response) -> {
-    //   Map<String, Object> model = new HashMap <String, Object>();
-    //   String username = request.queryParams("username");
-    //   String password = request.queryParams("password");
-    //   User user = new User(username, password);
-    //   user.save();
-    //   model.put("template", "templates/new-user.vtl");
-    //   return new VelocityTemplateEngine().render(
-    //     new ModelAndView(model, publicLayout);
-    //   );
-    // });
-    //
-    // //PRIVATE VIEWS
-    // get("/:user", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<String, Object>();
-    //   model.put("posts", Post.all());
-    //   model.put("template", "templates/index.vtl");
-    //   return new VelocityTemplateEngine().render(
-    //     new ModelAndView(model, privateLayout)
-    //   );
-    // });
+    //SIGNING UP
+    get("/new-user", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/new-user.vtl");
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, privateLayout)
+      );
+    });
+
+    post("/new-user-success", (request, response) -> {
+      Map<String, Object> model = new HashMap <String, Object>();
+      String username = request.queryParams("username");
+      String password = request.queryParams("password");
+      User user = new User(username, password);
+      user.save();
+      model.put("user", user);
+      model.put("template", "templates/new-user-success.vtl");
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, privateLayout)
+      );
+    });
+
+    //PRIVATE VIEWS
+    get("/:user", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      User user = User.find(request.params("user"));
+      model.put("user", user);
+      model.put("posts", Post.all());
+      model.put("template", "templates/index.vtl");
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, privateLayout)
+      );
+    });
+
+    post("/welcome", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      String username = request.queryParams("userUsername");
+      String password = request.queryParams("userPassword");
+      if (User.login(username,password) != -1){
+        User user = User.findByID(User.login(username,password));
+        model.put("user", user);
+        model.put("template", "templates/user.vtl");
+      } else {
+        model.put("template", "templates/login-failure.vtl");
+      }
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, privateLayout)
+      );
+    });
+
+
     //
     // get("/:user/:subgettit", (request, response) -> {
     //   Map<String, Object> model = new HashMap<String, Object>();

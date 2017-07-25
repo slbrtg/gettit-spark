@@ -96,4 +96,20 @@ public class User {
       return user;
     }
   }
+
+  public static int login(String username, String password){
+     try(Connection con = DB.sql2o.open()){
+       String sql = "SELECT * FROM users WHERE username=:username AND password=:password;";
+
+       User user = con.createQuery(sql)
+         .addParameter("username", username)
+         .addParameter("password", password)
+         .executeAndFetchFirst(User.class);
+       if (user == null){
+         return -1;
+       } else {
+         return user.getId();
+       }
+     }
+   }
 }
