@@ -80,7 +80,9 @@ CREATE TABLE posts (
     content character varying,
     votes integer,
     subname character varying,
-    "time" timestamp without time zone
+    "time" timestamp without time zone,
+    username character varying,
+    glyph character varying
 );
 
 
@@ -224,7 +226,16 @@ SELECT pg_catalog.setval('comments_id_seq', 1, false);
 -- Data for Name: posts; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY posts (id, title, type, content, votes, subname, "time") FROM stdin;
+COPY posts (id, title, type, content, votes, subname, "time", username, glyph) FROM stdin;
+1	ed	text	ededed	0	testSub	2017-07-26 10:07:00.573885	red	none
+2	redred	text	redredredrefef	0	testSub	2017-07-26 10:09:52.415497	red	none
+3	funny link	text	lol	0	testSub	2017-07-26 10:47:47.873594	red	none
+4	Animals are better than people	text	https://www.theodysseyonline.com/why-animals-are-sometimes-better-then-humans	0	testSub	2017-07-26 12:25:49.448042	red	none
+5	something about dogs	text	dogs r cool	0	testSub	2017-07-26 14:05:52.207814	red	none
+6	cats are so fun	text	cats and fun	0	testSub	2017-07-26 14:07:26.564335	red	none
+7	foxes	text	foxes	0	testSub	2017-07-26 14:08:29.85998	red	none
+8	hi	text	hi	0	TestNumber2	2017-07-26 14:16:02.778969	red	none
+9	my dog is so funny 	text	lol	0	animals	2017-07-26 14:27:20.953144	red	none
 \.
 
 
@@ -232,7 +243,7 @@ COPY posts (id, title, type, content, votes, subname, "time") FROM stdin;
 -- Name: posts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('posts_id_seq', 1, false);
+SELECT pg_catalog.setval('posts_id_seq', 9, true);
 
 
 --
@@ -240,6 +251,9 @@ SELECT pg_catalog.setval('posts_id_seq', 1, false);
 --
 
 COPY subs (id, name, modid, description) FROM stdin;
+3	testSub	10	test sub for tests
+4	TestNumber2	10	Used for testing subs and posts
+5	animals	10	a serious sub about animals. no pics, memes, or gifs.
 \.
 
 
@@ -247,7 +261,7 @@ COPY subs (id, name, modid, description) FROM stdin;
 -- Name: subs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('subs_id_seq', 1, false);
+SELECT pg_catalog.setval('subs_id_seq', 5, true);
 
 
 --
@@ -255,6 +269,10 @@ SELECT pg_catalog.setval('subs_id_seq', 1, false);
 --
 
 COPY users (id, username, password, subs) FROM stdin;
+10	red	red	\N
+11	cyan	cyan	\N
+12	yellow	red	\N
+13	redered	yellow	\N
 \.
 
 
@@ -262,7 +280,7 @@ COPY users (id, username, password, subs) FROM stdin;
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('users_id_seq', 1, false);
+SELECT pg_catalog.setval('users_id_seq', 13, true);
 
 
 --
