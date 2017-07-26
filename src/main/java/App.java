@@ -34,10 +34,10 @@ public class App {
         new ModelAndView(model, publicLayout)
       );
     });
-    
+
     get("/subgettit/:subgettit/post/:post", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      Post post = Post.findByID(Integer.parseInt(request.queryParams("post")));
+      Post post = Post.findByID(Integer.parseInt(request.params("post")));
       model.put("post", post);
       //model.put("comments", Comment.allFromPost(post.findByID()));
       model.put("template", "templates/post.vtl");
