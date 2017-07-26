@@ -15,6 +15,8 @@ public class App {
     //PUBLIC VIEWS
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
+      User user = User.find(request.params("user"));
+      model.put("user", user);
       model.put("posts", Post.all());
       model.put("template", "templates/index.vtl");
       return new VelocityTemplateEngine().render(
@@ -117,26 +119,30 @@ public class App {
     //   );
     // });
     //
-    // get("/:user/newSub", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<String, Object>();
-    //   model.put("template", "template/newSub.vtl");
-    //   return new VelocityTemplateEngine().render(
-    //     new ModelAndView(model, privateLayout)
-    //   );
-    // });
-    //
-    // post("/:user/newSub/", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<String, Object>();
-    //   User user = User.find(request.params("user"));
-    //   String name = request.queryParams("name");
-    //   String description = request.queryParams("description");
-    //   Sub sub = new Sub(name, user.getId, description())
-    //   sub.save();
-    //   model.put("template", "template/index.vtl");
-    //   return new VelocityTemplateEngine().render(
-    //     new ModelAndView(model, privateLayout)
-    //   );
-    // });
+    get("/:user/newSub", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      User user = User.find(request.params("user"));
+      model.put("user", user);
+      model.put("template", "templates/newSub.vtl");
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, privateLayout)
+      );
+    });
+
+    post("/:user/newSub/", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      User user = User.find(request.params("user"));
+      String name = request.queryParams("name");
+      String description = request.queryParams("description");
+      Sub sub = new Sub(name, user.getId(), description);
+      sub.save();
+      model.put("user", user);
+      model.put("sub", sub);
+      model.put("template", "templates/new-sub-success.vtl");
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, privateLayout)
+      );
+    });
     //
     // get("/:user/:sub/newPost", (request, response) -> {
     //   Map<String, Object> model = new HashMap<String, Object>();
