@@ -171,7 +171,9 @@ public class App {
 
     get("/:user/subgettit/:subgettit", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      Sub sub = Sub.findByName(request.params(":subgettit"));
+      Sub sub = Sub.findByName(request.params("subgettit"));
+      User user = User.find(request.params("user"));
+      model.put("user", user);
       model.put("sub", sub);
       model.put("posts", Post.allFromSub(sub.getName()));
       model.put("template", "templates/sub.vtl");
@@ -179,7 +181,5 @@ public class App {
         new ModelAndView(model, privateLayout)
       );
     });
-
-
   }
 }
