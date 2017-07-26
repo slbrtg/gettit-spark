@@ -114,3 +114,8 @@
   display: grid;
   grid-template-columns: 80% 20%;
 }
+
+.failure-page{
+  text-align: center;
+  image-orientation: center;
+}

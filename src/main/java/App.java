@@ -44,7 +44,6 @@ public class App {
       );
     });
 
-
     //SIGNING UP
     get("/new-user", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
