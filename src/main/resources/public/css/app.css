@@ -90,3 +90,8 @@
   text-align: center;
   margin-top: 20px;
 }
+
+#description-box {
+  height: 200px;
+  width: 250px;
+}

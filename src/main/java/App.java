@@ -143,6 +143,18 @@ public class App {
         new ModelAndView(model, privateLayout)
       );
     });
+
+    // get("/:user/:subgettit", (request, response) -> {
+    //   Map<String, Object> model = new HashMap<String, Object>();
+    //   User user = User.find(request.params("user"));
+    //   Sub sub = Sub.findByName(":id");
+    //   model.put("user", user);
+    //   model.put("sub", sub);
+    //   model.put("template", "templates/sub-main-page.vtl");
+    //   return new VelocityTemplateEngine().render(
+    //     new ModelAndView(model, privateLayout)
+    //   );
+    // });
     //
     // get("/:user/:sub/newPost", (request, response) -> {
     //   Map<String, Object> model = new HashMap<String, Object>();
