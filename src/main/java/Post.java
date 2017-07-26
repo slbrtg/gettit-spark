@@ -9,16 +9,20 @@ public class Post {
   private String title;
   private String content;
   private String subName;
+  private String username;
+  private String glyph;
   private int votes;
   private Timestamp time;
 
   //CONSTRUCTOR
-  public Post(String type, String title, String content, String subName){
+  public Post(String type, String title, String content, String subName, String username, String glyph){
     this.type = type;
     this.title = title;
     this.content = content;
     this.subName = subName;
     this.votes = 0;
+    this.username = username;
+    this.glyph = glyph;
   }
 
   //GET/SET METHODS
@@ -53,7 +57,7 @@ public class Post {
   //DATABASE METHODS
   public void save(){
     try(Connection con = DB.sql2o.open()){
-      String sql = "INSERT INTO posts(title, type, content, votes, subname, time) VALUES (:title, :type, :content, :votes, :subname, now());";
+      String sql = "INSERT INTO posts(title, type, content, votes, subname, time, username, glyph) VALUES (:title, :type, :content, :votes, :subname, now(), :username, :glyph);";
 
       this.id = (int) con.createQuery(sql, true)
         .addParameter("title", this.title)
@@ -61,6 +65,8 @@ public class Post {
         .addParameter("content", this.content)
         .addParameter("votes", this.votes)
         .addParameter("subname", this.subName)
+        .addParameter("username", this.username)
+        .addParameter("glyph", this.glyph)
         .executeUpdate()
       .getKey();
     }

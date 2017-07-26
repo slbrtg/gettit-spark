@@ -40,6 +40,7 @@
   grid-template-columns: 90px 40px 40px 40px 40px;
   grid-gap: 35px;
   background-color: #bedcf9;
+  width: 100%;
 }
 
 
@@ -53,6 +54,7 @@
 }
 
 .public-page{
+  margin-top: 100px;
   display: grid;
   grid-template-columns: 80% 20%;
 }
@@ -69,7 +71,6 @@
   height: 700px;
   margin-left: 600px;
 }
-
 
 .login {
   background-color: #f0f0f0;
@@ -91,7 +92,17 @@
   margin-top: 20px;
 }
 
+
 #description-box {
   height: 200px;
   width: 250px;
+}
+
+.comment-box{
+  height: 200px;
+  width: 250px;
+}
+
+.new-comment{
+  display: block;
 }

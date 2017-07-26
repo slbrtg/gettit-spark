@@ -26,7 +26,7 @@ public class App {
 
     // get("/:subgettit", (request, response) -> {
     //   Map<String, Object> model = new HashMap<String, Object>();
-    //   Sub sub = Sub.find(request.params(":subgettit"));
+    //   Sub sub = Sub.findByName(request.params(":subgettit"));
     //   model.put("posts", Post.allFromSub(sub.getName()));
     //   model.put("template", "templates/sub.vtl");
     //   return new VelocityTemplateEngine().render(
@@ -38,7 +38,7 @@ public class App {
     //   Map<String, Object> model = new HashMap<String, Object>();
     //   Post post = Post.findByID(Integer.parseInt(request.queryParams("post")));
     //   model.put("post", post);
-    //   model.put("comments", Comment.allFromPost(post.findByID()));
+    //   //model.put("comments", Comment.allFromPost(post.findByID()));
     //   model.put("template", "templates/post.vtl");
     //   return new VelocityTemplateEngine().render(
     //     new ModelAndView(model, publicLayout)
@@ -95,6 +95,54 @@ public class App {
         new ModelAndView(model, privateLayout)
       );
     });
+
+    //POST CREATION AND VIEWING
+    get("/:user/:subgettit/new-post", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      User user = User.find(request.params("user"));
+      Sub sub = Sub.findByName(request.params("subgettit"));
+      model.put("user", user);
+      model.put("sub", sub);
+      model.put("template", "templates/new-post.vtl");
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, privateLayout)
+      );
+    });
+
+    post("/:user/:subgettit/new-post-success", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      User user = User.find(request.params("user"));
+      Sub sub = Sub.findByName(request.params("subgettit"));
+      String type = request.queryParams("type");
+      String title = request.queryParams("title");
+      String content = request.queryParams("content");
+      String glyph = request.queryParams("glyph");
+      Post post = new Post(type, title, content, sub.getName(), user.getUsername(), glyph);
+      post.save();
+      model.put("post", post);
+      model.put("user", user);
+      model.put("sub", sub);
+      model.put("template", "templates/new-post-success.vtl");
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, privateLayout)
+      );
+    });
+
+    get("/:user/:subgettit/:postID", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      User user = User.find(request.params("user"));
+      Sub sub = Sub.findByName(request.params("subgettit"));
+      int postID = Integer.parseInt(request.params("postID"));
+      Post post = Post.findByID(postID);
+      model.put("post", post);
+      model.put("user", user);
+      model.put("sub", sub);
+      model.put("template", "templates/post.vtl");
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, privateLayout)
+      );
+    });
+
 
 
     //

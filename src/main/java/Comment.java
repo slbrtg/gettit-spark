@@ -25,6 +25,13 @@ public static List<Comment> all() {
   }
 }
 
+public static List<Comment> allFromPost() {
+  String sql = "SELECT * FROM comments WHERE postid = :postid";
+  try(Connection con = DB.sql2o.open()) {
+    return con.createQuery(sql).executeAndFetch(Comment.class);
+  }
+}
+
 //Create Save Method
 public void save() {
   try(Connection con = DB.sql2o.open()) {

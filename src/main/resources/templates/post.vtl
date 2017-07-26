@@ -1,0 +1,7 @@
+<h1>$post.getTitle()</h1>
+<h2>$post.getContent()</h2>
+<form class="new-comment" action="$user.getUsername()/$sub.getName()/$post.getId" method="post">
+  <label for="comment">New Comment</label>
+  <input class="comment-box" type="textarea" name="comment">
+  <button class="btn btn-primary" type="submit" name="button">Submit</button>
+</form>
