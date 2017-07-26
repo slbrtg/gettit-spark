@@ -106,3 +106,13 @@
 .new-comment{
   display: block;
 }
+
+#sub-body{
+  display: grid;
+  grid-template-columns: 80% 20%;
+}
+
+#home-body{
+  display: grid;
+  grid-template-columns: 80% 20%;
+}

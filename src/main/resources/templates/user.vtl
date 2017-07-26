@@ -1,12 +1,27 @@
+<div class="home-head">
+  <br>
+  <h1>$user.getUsername()'s subgettits</h1>
+</div>
 
-<a href = "/$user.getUsername()/newSub">Make a new sub-gettit</a>
-
-<div class="home-page">
-#foreach ($post in $posts)
-  <div class="post">
-    <h3><a href="/$user.getUsername()/$post.getSubName()/$post.getId()">$post.getTitle()</a></h3>
-    <h5><a href="/$user.getUsername()/subgettit/$post.getSubName()">$post.getSubName()</a></h5>
-    <hr>
+<div id="home-body">
+  <div class="posts">
+    #foreach ($post in $posts)
+      <div class="post">
+        <h3><a href="/$user.getUsername()/subgettit/$post.getSubName()/post/$post.getId()">$post.getTitle()</a></h3>
+        <h5><a href="/$user.getUsername()/subgettit/$post.getSubName()">$post.getSubName()</a></h5>
+        <hr>
+      </div>
+    #end
   </div>
-#end
+  <div class="new-sub">
+    <div class="side-col">
+      <center id="login-signup-form">
+        <div class="login">
+          <h1 class="loginheading">Create a new sub</h1>
+            <a href="/$user.getUsername()/newSub"><button class="btn btn-primary" type="button" name="button">Create a sub</button></a>
+          <!-- ©©© COPYRIGHT ©©©--><p class="text-muted loginbottomtext">© gettit</p>
+        </div>
+      </center>
+    </div>
+  </div>
 </div>
