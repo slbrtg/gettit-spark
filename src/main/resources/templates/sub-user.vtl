@@ -1,0 +1,27 @@
+<div class="sub-head">
+  <h1>$sub.getName()</h1>
+  <h3>$sub.getDescription()</h3>
+</div>
+
+<div id="sub-body">
+  <div class="posts">
+    #foreach ($post in $posts)
+      <div class="post">
+        <h3><a href="/$user.getUsername()/subgettit/$post.getSubName()/post/$post.getId()">$post.getTitle()</a></h3>
+        <h5><a href="/$user.getUsername()/subgettit/$post.getSubName()">$post.getSubName()</a></h5>
+        <hr>
+      </div>
+    #end
+  </div>
+  <div class="new-post">
+    <div class="side-col">
+      <center id="login-signup-form">
+        <div class="login">
+          <h1 class="loginheading">Post to this sub</h1>
+            <a href="/$user.getUsername()/subgettit/$sub.getName()/new-post"><button class="btn btn-primary" type="button" name="button">Create a post</button></a>
+          <!-- ©©© COPYRIGHT ©©©--><p class="text-muted loginbottomtext">© gettit</p>
+        </div>
+      </center>
+    </div>
+  </div>
+</div>
