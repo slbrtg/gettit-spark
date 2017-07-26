@@ -15,8 +15,6 @@ public class App {
     //PUBLIC VIEWS
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      User user = User.find(request.params("user"));
-      model.put("user", user);
       model.put("posts", Post.all());
       model.put("template", "templates/index.vtl");
       return new VelocityTemplateEngine().render(
@@ -24,28 +22,29 @@ public class App {
       );
     });
 
-    // get("/:subgettit", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<String, Object>();
-    //   Sub sub = Sub.findByName(request.params(":subgettit"));
-    //   model.put("posts", Post.allFromSub(sub.getName()));
-    //   model.put("template", "templates/sub.vtl");
-    //   return new VelocityTemplateEngine().render(
-    //     new ModelAndView(model, publicLayout)
-    //   );
-    // });
-    //
-    // get("/:subgettit/:post", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<String, Object>();
-    //   Post post = Post.findByID(Integer.parseInt(request.queryParams("post")));
-    //   model.put("post", post);
-    //   //model.put("comments", Comment.allFromPost(post.findByID()));
-    //   model.put("template", "templates/post.vtl");
-    //   return new VelocityTemplateEngine().render(
-    //     new ModelAndView(model, publicLayout)
-    //   );
-    // });
-    //
-    //
+    get("/subgettit/:subgettit", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Sub sub = Sub.findByName(request.params(":subgettit"));
+      model.put("posts", Post.allFromSub(sub.getName()));
+      model.put("sub", sub);
+      model.put("template", "templates/sub.vtl");
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, publicLayout)
+      );
+    });
+
+    get("/subgettit/:subgettit/post/:post", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Post post = Post.findByID(Integer.parseInt(request.params("post")));
+      model.put("post", post);
+      //model.put("comments", Comment.allFromPost(post.findByID()));
+      model.put("template", "templates/post.vtl");
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, publicLayout)
+      );
+    });
+
+
     //SIGNING UP
     get("/new-user", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
@@ -98,7 +97,7 @@ public class App {
     });
 
     //POST CREATION AND VIEWING
-    get("/:user/:subgettit/new-post", (request, response) -> {
+    get("/:user/subgettit/:subgettit/new-post", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       User user = User.find(request.params("user"));
       Sub sub = Sub.findByName(request.params("subgettit"));
@@ -110,7 +109,7 @@ public class App {
       );
     });
 
-    post("/:user/:subgettit/new-post-success", (request, response) -> {
+    post("/:user/subgettit/:subgettit/new-post-success", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       User user = User.find(request.params("user"));
       Sub sub = Sub.findByName(request.params("subgettit"));
@@ -129,7 +128,7 @@ public class App {
       );
     });
 
-    get("/:user/:subgettit/:postID", (request, response) -> {
+    get("/:user/subgettit/:subgettit/post/:postID", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       User user = User.find(request.params("user"));
       Sub sub = Sub.findByName(request.params("subgettit"));
@@ -144,6 +143,7 @@ public class App {
       );
     });
 
+    //NEW SUB CREATION AND VIEWING
     get("/:user/newSub", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       User user = User.find(request.params("user"));
