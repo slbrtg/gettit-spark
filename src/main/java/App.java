@@ -94,6 +94,38 @@ public class App {
       );
     });
 
+    //POST CREATION AND VIEWING
+    get("/:user/:subgettit/new-post", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      User user = User.find(request.params("user"));
+      Sub sub = Sub.findByName(request.params("subgettit"));
+      model.put("user", user);
+      model.put("sub", sub);
+      model.put("template", "templates/new-post.vtl");
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, privateLayout)
+      );
+    });
+
+    post("/:user/:subgettit/new-post-success", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      User user = User.find(request.params("user"));
+      Sub sub = Sub.findByName(request.params("subgettit"));
+      String type = request.queryParams("type");
+      String title = request.queryParams("title");
+      String content = request.queryParams("content");
+      String glyph = request.queryParams("glyph");
+      Post post = new Post(type, title, content, sub.getName(), user.getUsername(), glyph);
+      post.save();
+      model.put("post", post);
+      model.put("user", user);
+      model.put("sub", sub);
+      model.put("template", "templates/new-post-success.vtl");
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, privateLayout)
+      );
+    });
+
 
     //
     // get("/:user/:subgettit", (request, response) -> {

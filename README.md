@@ -62,13 +62,13 @@ $ postgres
 * _In the new tab, create 'gettit_spark' database:_
 ```
 $ psql
-* `CREATE DATABASE gettit_spark;`
-* `\c gettit_spark;`
-* `CREATE TABLE users (id serial PRIMARY KEY, username varchar, password varchar);`
-* `CREATE TABLE posts (id serial PRIMARY KEY, type varchar, title varchar, content varchar, subName varchar, votes int, time timestamp);`
+* `CREATE DATABASE gettit;`
+* `\c gettit;`
+* `CREATE TABLE users (id serial PRIMARY KEY, username varchar unique, password varchar);`
+* `CREATE TABLE posts (id serial PRIMARY KEY, type varchar, title varchar, content varchar, subName varchar, votes int, time timestamp, username varchar, glyph varchar);`
 * `CREATE TABLE comments (id serial PRIMARY KEY, comment varchar, postId int, username varchar, time timestamp);`
-* `CREATE TABLE subs (id serial PRIMARY KEY, description varchar, modId int);`
-* `CREATE DATABASE gettit_spark_test WITH TEMPLATE gettit_spark;`
+* `CREATE TABLE subs (id serial PRIMARY KEY, name varchar unique, description varchar, modId int);`
+* `CREATE DATABASE gettit_test WITH TEMPLATE gettit;`
 ```
 * _Return to original tab where repository was cloned and run gradle:_
 ```

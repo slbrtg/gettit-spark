@@ -1,0 +1,18 @@
+<center>
+  <h1>$user.getUsername()</h1>
+  <h1>$sub.getName()</h1>
+  <form action="/$user.getUsername()/$sub.getName()/new-post-success" method="post">
+    <h1>Type of Post</h1>
+    <select name="type">
+      <option value="text">Text</option>
+      <option value="link">Link</option>
+    </select>
+    <label for="title">Title</label>
+    <input type="text" name="title" value="">
+    <label for="content">Provide link or content</label>
+    <input type="textarea" name="content" value="">
+    <label for="glyph">Select a glyph</label>
+    <input type="text" name="glyph" value="none">
+    <button type="submit" name="button">Submit post</button>
+  </form>
+</center>
