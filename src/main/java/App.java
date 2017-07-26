@@ -37,7 +37,7 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       Post post = Post.findByID(Integer.parseInt(request.params("post")));
       model.put("post", post);
-      //model.put("comments", Comment.allFromPost(post.findByID()));
+      // model.put("comments", Comment.allFromPost(post.findByID()));
       model.put("template", "templates/post.vtl");
       return new VelocityTemplateEngine().render(
         new ModelAndView(model, publicLayout)
@@ -134,6 +134,26 @@ public class App {
       Sub sub = Sub.findByName(request.params("subgettit"));
       int postID = Integer.parseInt(request.params("postID"));
       Post post = Post.findByID(postID);
+      //model.put("comments", Comment.allFromPost(post.findByID()));
+      model.put("post", post);
+      model.put("user", user);
+      model.put("sub", sub);
+      model.put("template", "templates/post.vtl");
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, privateLayout)
+      );
+    });
+
+    post("/:user/subgettit/:subgettit/post/:postID", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      User user = User.find(request.params("user"));
+      Sub sub = Sub.findByName(request.params("subgettit"));
+      int postID = Integer.parseInt(request.params("postID"));
+      Post post = Post.findByID(postID);
+      String content = request.queryParams("comment");
+      Comment comment = new Comment(content, post.getId(), user.getUsername());
+      comment.save();
+      model.put("comments", Comment.allFromPost(post.getId()));
       model.put("post", post);
       model.put("user", user);
       model.put("sub", sub);

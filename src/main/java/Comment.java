@@ -25,10 +25,13 @@ public static List<Comment> all() {
   }
 }
 
-public static List<Comment> allFromPost() {
+public static List<Comment> allFromPost(int id) {
   String sql = "SELECT * FROM comments WHERE postid = :postid";
   try(Connection con = DB.sql2o.open()) {
-    return con.createQuery(sql).executeAndFetch(Comment.class);
+    List<Comment> comments = con.createQuery(sql)
+      .addParameter("postid", id)
+      .executeAndFetch(Comment.class);
+    return comments;
   }
 }
 
@@ -103,7 +106,7 @@ public boolean equals(Object otherComment) {
     return username;
   }
 
-  public Timestamp time(){
+  public Timestamp getTime(){
      return time;
  }
 
