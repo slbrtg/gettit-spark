@@ -17,6 +17,7 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("posts", Post.all());
       model.put("subs", Sub.all());
+      model.put("Comment", Comment.class);
       model.put("template", "templates/index.vtl");
       return new VelocityTemplateEngine().render(
         new ModelAndView(model, publicLayout)
@@ -29,6 +30,7 @@ public class App {
       model.put("posts", Post.allFromSub(sub.getName()));
       model.put("subs", Sub.all());
       model.put("sub", sub);
+      model.put("Comment", Comment.class);
       model.put("template", "templates/sub.vtl");
       return new VelocityTemplateEngine().render(
         new ModelAndView(model, publicLayout)
@@ -40,6 +42,7 @@ public class App {
       Post post = Post.findByID(Integer.parseInt(request.params("post")));
       model.put("post", post);
       model.put("subs", Sub.all());
+      model.put("Comment", Comment.class);
       model.put("comments", Comment.allFromPost(post.getId()));
       model.put("template", "templates/post.vtl");
       return new VelocityTemplateEngine().render(
@@ -79,6 +82,7 @@ public class App {
       model.put("user", user);
       model.put("posts", Post.all());
       model.put("subs", Sub.all());
+      model.put("Comment", Comment.class);
       model.put("template", "templates/user.vtl");
       return new VelocityTemplateEngine().render(
         new ModelAndView(model, privateLayout)
@@ -94,6 +98,7 @@ public class App {
         model.put("user", user);
         model.put("subs", Sub.all());
         model.put("posts", Post.all());
+        model.put("Comment", Comment.class);
         model.put("template", "templates/user.vtl");
       } else {
         model.put("subs", Sub.all());
@@ -145,6 +150,7 @@ public class App {
       int postID = Integer.parseInt(request.params("postID"));
       Post post = Post.findByID(postID);
       model.put("comments", Comment.allFromPost(post.getId()));
+      model.put("Comment", Comment.class);
       model.put("post", post);
       model.put("user", user);
       model.put("sub", sub);
@@ -165,6 +171,7 @@ public class App {
       Comment comment = new Comment(content, post.getId(), user.getUsername());
       comment.save();
       model.put("comments", Comment.allFromPost(post.getId()));
+      model.put("Comment", Comment.class);
       model.put("post", post);
       model.put("user", user);
       model.put("sub", sub);
@@ -209,6 +216,7 @@ public class App {
       User user = User.find(request.params("user"));
       model.put("user", user);
       model.put("subs", Sub.all());
+      model.put("Comment", Comment.class);
       model.put("sub", sub);
       model.put("posts", Post.allFromSub(sub.getName()));
       model.put("template", "templates/sub-user.vtl");

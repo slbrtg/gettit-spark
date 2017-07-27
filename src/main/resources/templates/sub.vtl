@@ -11,7 +11,7 @@
       <span class="glyphicon glyphicon-leaf post-votes"></span>
       <span class="glyphicon glyphicon-fire post-img"></span>
       <h3 class="post-title"><a href="$post.getContent()">$post.getTitle()</a></h3>
-      <h5 class="post-details"><a href="/subgettit/$post.getSubName()">$post.getSubName()</a>, <a href="/subgettit/$post.getSubName()/post/$post.getId()">comments</a></h5>
+      <h5 class="post-details"><a href="/subgettit/$post.getSubName()">$post.getSubName()</a>, <a href="/subgettit/$post.getSubName()/post/$post.getId()">$Comment.allFromPost($post.getId()).size() comments</a></h5>
       <hr>
     </div>
   #else
@@ -20,7 +20,7 @@
       <span class="glyphicon glyphicon-leaf post-votes"></span>
       <span class="glyphicon glyphicon-fire post-img"></span>
       <h3 class="post-title"><a href="/subgettit/$post.getSubName()/post/$post.getId()">$post.getTitle()</a></h3>
-      <h5 class="post-details"><a href="/subgettit/$post.getSubName()">$post.getSubName()</a>, <a href="/subgettit/$post.getSubName()/post/$post.getId()">comments</a></h5>
+      <h5 class="post-details"><a href="/subgettit/$post.getSubName()">$post.getSubName()</a>, <a href="/subgettit/$post.getSubName()/post/$post.getId()">$Comment.allFromPost($post.getId()).size() comments</a></h5>
       <hr>
     </div>
   #end
