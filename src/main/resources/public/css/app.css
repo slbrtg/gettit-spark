@@ -124,7 +124,7 @@
   border-color: #FFF;
   display: grid;
   grid-gap:10px;
-  grid-template-columns: 35px 55px auto;
+  grid-template-columns: 75px 75px auto;
 }
 
 .post-votes{
@@ -138,13 +138,13 @@
 }
 
 .post-title{
-  margin-top: -8px;
+  margin-top: 15px;
   grid-column: 3;
   grid-row: 1;
 }
 
 .post-details{
-  margin-top: -8px;
+  margin-top: -10px;
   grid-column: 3;
   grid-row: 2;
 }
@@ -157,4 +157,18 @@
   border-radius: 25px;
   border-color: grey;
   text-align: center;
+}
+
+.votes{
+  height: 75px;
+  width: 25px;
+}
+
+button{
+  border: none;
+  background-color: white;
+}
+
+.vote-score{
+  margin-left: 8px;
 }

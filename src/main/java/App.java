@@ -88,18 +88,6 @@ public class App {
       );
     });
 
-    // get("/welcome", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<String, Object>();
-    //   User user = User.find(request.params("user"));
-    //   model.put("user", user);
-    //   model.put("posts", Post.all());
-    //   model.put("template", "templates/user.vtl");
-    //   return new VelocityTemplateEngine().render(
-    //     new ModelAndView(model, privateLayout)
-    //   );
-    // });
-
-
     post("/welcome", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       String username = request.queryParams("userUsername");
@@ -130,7 +118,7 @@ public class App {
       model.put("post", post);
       model.put("user", user);
       model.put("template", "templates/user.vtl");
-      response.redirect("/user");
+      response.redirect("/" + user.getUsername());
       return new VelocityTemplateEngine().render(
         new ModelAndView(model, privateLayout)
       );
@@ -146,7 +134,7 @@ public class App {
       model.put("post", post);
       model.put("user", user);
       model.put("template", "templates/user.vtl");
-      response.redirect("/user");
+      response.redirect("/" + user.getUsername());
       return new VelocityTemplateEngine().render(
         new ModelAndView(model, privateLayout)
       );

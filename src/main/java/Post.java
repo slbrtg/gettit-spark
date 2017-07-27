@@ -62,12 +62,11 @@ public class Post {
     }
   }
 
-<<<<<<< HEAD
+
   public String getGlyph(){
     return glyph;
   }
 
-=======
   public void downvote(){
     votes -= 1;
     try(Connection con = DB.sql2o.open()){
@@ -81,7 +80,6 @@ public class Post {
   }
 
 
->>>>>>> 300109d66fc525a2ecc81e0a03f51074a12852b3
   //DATABASE METHODS
   public void save(){
     try(Connection con = DB.sql2o.open()){
