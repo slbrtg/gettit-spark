@@ -54,6 +54,10 @@ public class Post {
     votes += 1;
   }
 
+  public String getGlyph(){
+    return glyph;
+  }
+
   //DATABASE METHODS
   public void save(){
     try(Connection con = DB.sql2o.open()){
