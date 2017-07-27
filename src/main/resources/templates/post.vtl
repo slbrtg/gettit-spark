@@ -3,9 +3,9 @@
 <br>
 <h1><a href="/subgettit/$post.getSubName()"></a></h1>
 #if($post.getType().equals("link"))
-  <h1><a href="$post.getContent()">$post.getTitle()</a></h1>
+  <h1><span class="$post.getGlyph()"></span><a href="$post.getContent()"> $post.getTitle()</a></h1>
 #else
-  <h1>$post.getTitle()</h1>
+  <h1><span class="$post.getGlyph()"></span> $post.getTitle()</h1>
   <h2>$post.getContent()</h2>
 #end
 <br>

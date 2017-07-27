@@ -12,7 +12,7 @@
         <div class="post">
           <!-- <h3>Link</h3> -->
           <span class="glyphicon glyphicon-leaf post-votes"></span>
-          <span class="glyphicon glyphicon-fire post-img"></span>
+          <span class="$post.getGlyph()"></span>
           <h3 class="post-title"><a href="$post.getContent()">$post.getTitle()</a></h3>
           <h5 class="post-details"><a href="/$user.getUsername()/subgettit/$post.getSubName()">$post.getSubName()</a>, <a href="/$user.getUsername()/subgettit/$post.getSubName()/post/$post.getId()">$Comment.allFromPost($post.getId()).size() comments</a></h5>
           <hr>
@@ -21,7 +21,7 @@
         <div class="post">
           <!-- <h3>Text Post</h3> -->
           <span class="glyphicon glyphicon-leaf post-votes"></span>
-          <span class="glyphicon glyphicon-fire post-img"></span>
+          <span class="$post.getGlyph()"></span>
           <h3 class="post-title"><a href="/$user.getUsername()/subgettit/$post.getSubName()/post/$post.getId()">$post.getTitle()</a></h3>
           <h5 class="post-details"><a href="/$user.getUsername()/subgettit/$post.getSubName()">$post.getSubName()</a>, <a href="/$user.getUsername()/subgettit/$post.getSubName()/post/$post.getId()">$Comment.allFromPost($post.getId()).size() comments</a></h5>
           <hr>
