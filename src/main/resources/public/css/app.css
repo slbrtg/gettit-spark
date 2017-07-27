@@ -148,3 +148,13 @@
   grid-column: 3;
   grid-row: 2;
 }
+
+.comment{
+  height: 150px;
+  width:400px;
+  background-color: #f0f0f0;
+  border: 1px solid;
+  border-radius: 25px;
+  border-color: grey;
+  text-align: center;
+}

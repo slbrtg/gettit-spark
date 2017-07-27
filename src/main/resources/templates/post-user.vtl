@@ -1,15 +1,28 @@
-<h1>$post.getTitle()</h1>
-<h2>$post.getContent()</h2>
+<br>
+<h1><a href="/$user.getUsername()/subgettit/$post.getSubName()"></a></h1>
+#if($post.getType().equals("link"))
+  <h1><a href="$post.getContent()">$post.getTitle()</a></h1>
+#else
+  <h1>$post.getTitle()</h1>
+  <h2>$post.getContent()</h2>
+#end
+<br>
 <form class="new-comment" action="/$user.getUsername()/subgettit/$sub.getName()/post/$post.getId()" method="post">
+  <br>
   <label for="comment">New Comment</label>
+  <br>
   <input class="comment-box" type="textarea" name="comment">
+  <br>
   <button class="btn btn-primary" type="submit" name="button">Submit</button>
 </form>
 <div id="comments">
+  <h3>Comments section</h3>
+  <hr>
+  <br>
   #foreach ($comment in $comments)
   <div class="comment">
-    <h3>$comment.getComment()</h3>
-    <h4>$comment.getUsername(), $comment.getTime()</h4>
+    <h4>$comment.getComment()</h4>
+    <h5>$comment.getUsername(), $comment.getTime()</h5>
   </div>
   #end
 </div>
