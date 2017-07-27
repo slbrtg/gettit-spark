@@ -28,8 +28,8 @@
   float: left;
   list-style: none;
   display: grid;
-  grid-template-columns: 40px 60px 30px 40px 40px;
-  grid-gap: 25px;
+  grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+  grid-gap: 65px;
 }
 
 

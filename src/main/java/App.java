@@ -16,6 +16,7 @@ public class App {
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("posts", Post.all());
+      model.put("subs", Sub.all());
       model.put("template", "templates/index.vtl");
       return new VelocityTemplateEngine().render(
         new ModelAndView(model, publicLayout)
@@ -26,6 +27,7 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       Sub sub = Sub.findByName(request.params(":subgettit"));
       model.put("posts", Post.allFromSub(sub.getName()));
+      model.put("subs", Sub.all());
       model.put("sub", sub);
       model.put("template", "templates/sub.vtl");
       return new VelocityTemplateEngine().render(
@@ -37,6 +39,7 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       Post post = Post.findByID(Integer.parseInt(request.params("post")));
       model.put("post", post);
+      model.put("subs", Sub.all());
       model.put("comments", Comment.allFromPost(post.getId()));
       model.put("template", "templates/post.vtl");
       return new VelocityTemplateEngine().render(
@@ -48,6 +51,7 @@ public class App {
     //SIGNING UP
     get("/new-user", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
+      model.put("subs", Sub.all());
       model.put("template", "templates/new-user.vtl");
       return new VelocityTemplateEngine().render(
         new ModelAndView(model, privateLayout)
@@ -61,6 +65,7 @@ public class App {
       User user = new User(username, password);
       user.save();
       model.put("user", user);
+      model.put("subs", Sub.all());
       model.put("template", "templates/new-user-success.vtl");
       return new VelocityTemplateEngine().render(
         new ModelAndView(model, privateLayout)
@@ -73,6 +78,7 @@ public class App {
       User user = User.find(request.params("user"));
       model.put("user", user);
       model.put("posts", Post.all());
+      model.put("subs", Sub.all());
       model.put("template", "templates/user.vtl");
       return new VelocityTemplateEngine().render(
         new ModelAndView(model, privateLayout)
@@ -86,9 +92,11 @@ public class App {
       if (User.login(username,password) != -1){
         User user = User.findByID(User.login(username,password));
         model.put("user", user);
+        model.put("subs", Sub.all());
         model.put("posts", Post.all());
         model.put("template", "templates/user.vtl");
       } else {
+        model.put("subs", Sub.all());
         model.put("template", "templates/login-failure.vtl");
       }
       return new VelocityTemplateEngine().render(
@@ -102,6 +110,7 @@ public class App {
       User user = User.find(request.params("user"));
       Sub sub = Sub.findByName(request.params("subgettit"));
       model.put("user", user);
+      model.put("subs", Sub.all());
       model.put("sub", sub);
       model.put("template", "templates/new-post.vtl");
       return new VelocityTemplateEngine().render(
@@ -122,6 +131,7 @@ public class App {
       model.put("post", post);
       model.put("user", user);
       model.put("sub", sub);
+      model.put("subs", Sub.all());
       model.put("template", "templates/new-post-success.vtl");
       return new VelocityTemplateEngine().render(
         new ModelAndView(model, privateLayout)
@@ -138,6 +148,7 @@ public class App {
       model.put("post", post);
       model.put("user", user);
       model.put("sub", sub);
+      model.put("subs", Sub.all());
       model.put("template", "templates/post-user.vtl");
       return new VelocityTemplateEngine().render(
         new ModelAndView(model, privateLayout)
@@ -157,6 +168,7 @@ public class App {
       model.put("post", post);
       model.put("user", user);
       model.put("sub", sub);
+      model.put("subs", Sub.all());
       model.put("template", "templates/post-user.vtl");
       return new VelocityTemplateEngine().render(
         new ModelAndView(model, privateLayout)
@@ -168,6 +180,7 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       User user = User.find(request.params("user"));
       model.put("user", user);
+      model.put("subs", Sub.all());
       model.put("template", "templates/newSub.vtl");
       return new VelocityTemplateEngine().render(
         new ModelAndView(model, privateLayout)
@@ -183,6 +196,7 @@ public class App {
       sub.save();
       model.put("user", user);
       model.put("sub", sub);
+      model.put("subs", Sub.all());
       model.put("template", "templates/new-sub-success.vtl");
       return new VelocityTemplateEngine().render(
         new ModelAndView(model, privateLayout)
@@ -194,6 +208,7 @@ public class App {
       Sub sub = Sub.findByName(request.params(":subgettit"));
       User user = User.find(request.params("user"));
       model.put("user", user);
+      model.put("subs", Sub.all());
       model.put("sub", sub);
       model.put("posts", Post.allFromSub(sub.getName()));
       model.put("template", "templates/sub-user.vtl");

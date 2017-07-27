@@ -12,9 +12,12 @@
         <div class="width-clip">
           <ul id="sg-header-left-ul">
             <li><a href="/"><strong>GETTIT</strong></a></li>
-            <li><a href="/hot">POPULAR</a></li>
-            <li><a href="/new">ALL</a></li>
-            <li><a href="/random">RANDOM</a></li>
+            <li><a href="#">POPULAR</a></li>
+            <li><a href="#">ALL</a></li>
+            <li><a href="#">RANDOM</a></li>
+            #foreach($sub in $subs)
+            <li><a href="/subgettit/$sub.getName()">$sub.getName()</a></li>
+            #end
           </ul>
         </div>
       </div>
@@ -24,7 +27,7 @@
       <navbar class="nav nav-default" id="reddit-second-nav">
         <ul class="nav nav-tabs">
           <li><img id= "index-img" src="/images/Reddit-Picture.png"><strong><a href="/">   GETTIT</a></strong></li>
-          <li class="active"><a href="#">POPULAR</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-eye-open"></span>  POPULAR</a></li>
 
           <li><a href="#"><span class="glyphicon glyphicon-fire"></span> HOT</a></li>
 
