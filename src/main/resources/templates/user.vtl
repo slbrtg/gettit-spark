@@ -1,3 +1,10 @@
+
+<!-- <script type="text/javascript">
+$('#target').click(function() {
+    $('#output').html(function(i, val) { return val*1+1 });
+});
+</script> -->
+
 <div class="home-head">
   <br>
   <h1>$user.getUsername()'s subgettits</h1>
@@ -27,7 +34,21 @@
           <hr>
         </div>
       #end
-    #end
+
+        <form action="/$user.getUsername()/subgettit/$post.getSubName()/post/$post.getId()/upvote" method="post">
+          <button id="upvote" type="submit">Upvote</button>
+        </form>
+
+        <lable id = "label-vote"for="vote"></lable>
+        <input value=$post.getVotes() name="vote" type="text"></input>
+
+        <form action="/$user.getUsername()/subgettit/$post.getSubName()/post/$post.getId()/downvote" method="post">
+          <button id="downvote" type="submit">Downvote</button>
+        </form>
+
+        <!-- <img src="/images/downvote.jpg" id ="downvote-button"> -->
+        <hr>
+      </div>
     </div>
     <div class="new-sub">
       <div class="side-col">
