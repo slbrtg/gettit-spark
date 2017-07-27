@@ -19,7 +19,7 @@
             <li><a href="#">ALL</a></li>
             <li><a href="#">RANDOM</a></li>
             #foreach($sub in $subs)
-            <li><a href="/$sub.getName()">$sub.getName()</a></li>
+            <li><a href="/$user.getUsername()/subgettit/$sub.getName()">$sub.getName()</a></li>
             #end
           </ul>
         </div>
