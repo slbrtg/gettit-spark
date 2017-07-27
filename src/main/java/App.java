@@ -79,6 +79,18 @@ public class App {
       );
     });
 
+    // get("/welcome", (request, response) -> {
+    //   Map<String, Object> model = new HashMap<String, Object>();
+    //   User user = User.find(request.params("user"));
+    //   model.put("user", user);
+    //   model.put("posts", Post.all());
+    //   model.put("template", "templates/user.vtl");
+    //   return new VelocityTemplateEngine().render(
+    //     new ModelAndView(model, privateLayout)
+    //   );
+    // });
+
+
     post("/welcome", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       String username = request.queryParams("userUsername");
@@ -91,6 +103,38 @@ public class App {
       } else {
         model.put("template", "templates/login-failure.vtl");
       }
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, privateLayout)
+      );
+    });
+
+    post("/:user/subgettit/:subgettit/post/:postID/upvote", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      int postID = Integer.parseInt(request.params("postID"));
+      User user = User.find(request.params("user"));
+      Post post = Post.findByID(postID);
+      post.upvote();
+      // post.downvote();
+      model.put("post", post);
+      model.put("user", user);
+      model.put("template", "templates/user.vtl");
+      response.redirect("/user");
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, privateLayout)
+      );
+    });
+
+    post("/:user/subgettit/:subgettit/post/:postID/downvote", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      int postID = Integer.parseInt(request.params("postID"));
+      User user = User.find(request.params("user"));
+      Post post = Post.findByID(postID);
+      post.downvote();
+      // post.downvote();
+      model.put("post", post);
+      model.put("user", user);
+      model.put("template", "templates/user.vtl");
+      response.redirect("/user");
       return new VelocityTemplateEngine().render(
         new ModelAndView(model, privateLayout)
       );
@@ -201,7 +245,5 @@ public class App {
         new ModelAndView(model, privateLayout)
       );
     });
-
-
   }
 }

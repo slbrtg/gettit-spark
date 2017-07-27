@@ -52,7 +52,28 @@ public class Post {
 
   public void upvote(){
     votes += 1;
+    try(Connection con = DB.sql2o.open()){
+      String sql = "UPDATE posts SET votes=:votes WHERE id=:id;";
+      con.createQuery(sql)
+        .addParameter("votes", this.votes)
+        .addParameter("id", this.id)
+        .executeUpdate();
+
+    }
   }
+
+  public void downvote(){
+    votes -= 1;
+    try(Connection con = DB.sql2o.open()){
+      String sql = "UPDATE posts SET votes=:votes WHERE id=:id;";
+      con.createQuery(sql)
+        .addParameter("votes", this.votes)
+        .addParameter("id", this.id)
+        .executeUpdate();
+
+    }
+  }
+
 
   //DATABASE METHODS
   public void save(){
