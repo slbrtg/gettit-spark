@@ -50,7 +50,6 @@ public class App {
       );
     });
 
-
     //SIGNING UP
     get("/new-user", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
@@ -212,7 +211,7 @@ public class App {
 
     get("/:user/subgettit/:subgettit", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      Sub sub = Sub.findByName(request.params(":subgettit"));
+      Sub sub = Sub.findByName(request.params("subgettit"));
       User user = User.find(request.params("user"));
       model.put("user", user);
       model.put("subs", Sub.all());
@@ -224,7 +223,5 @@ public class App {
         new ModelAndView(model, privateLayout)
       );
     });
-
-
   }
 }
