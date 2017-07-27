@@ -3,16 +3,28 @@
   <h1>$sub.getName()</h1>
   <form action="/$user.getUsername()/subgettit/$sub.getName()/new-post-success" method="post">
     <h1>Type of Post</h1>
+    <label for="glyph">Select a type</label>
     <select name="type">
       <option value="text">Text</option>
       <option value="link">Link</option>
     </select>
+    <label for="glyph">Theme</label>
+      <select name="theme">
+        <option value="film"><span class="glyphicon glyphicon-film"></span>Film</option>
+        <option value="film"><span class="glyphicon glyphicon-camera">Photography</option>
+        <option value="film"><span class="glyphicon glyphicon-heart">Dating</option>
+        <option value="film"><span class="glyphicon glyphicon-globe">Travel</option>
+        <option value="film"><span class="glyphicon glyphicon-music">Music</option>
+        <option value="film"><span class="glyphicon glyphicon-globe">World News</option>
+        <option value="film"><span class="glyphicon glyphicon-pencil">Writing</option>
+        <option value="film"><span class="glyphicon glyphicon-phone">Tech</option>
+        <option value="film"><span class="glyphicon glyphicon-tree">Nature</option>
+        <option value="film"><span class="glyphicon glyphicon-asterisk">Miscellaneous</option>
+      </select>
     <label for="title">Title</label>
     <input type="text" name="title" value="">
     <label for="content">Provide link or content</label>
     <input type="textarea" name="content" value="">
-    <label for="glyph">Select a glyph</label>
-    <input type="text" name="glyph" value="none">
     <button type="submit" name="button">Submit post</button>
   </form>
 </center>
