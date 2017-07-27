@@ -1,11 +1,11 @@
 # _Gettit App_
 
-#### _An app that is based off of Reddit..., July 24, 2017_
+#### _An app that is based off of Reddit, July 24, 2017_
 
 #### By _**Sowmya Logaswamy, Mara Timberlake, Saul Artiga, Lincoln Nguyen**_
 
 ## Description
-_Gettit... like Reddit_
+_Geddit offers a number of features for the user interface including the ability to display comments; access individual subgettits; make an account and login with unique username; public features such as viewing the homepage, subreddits, comments, number of votes; and additional private features include the ability to comment and vote. Automatic retrieval updates vote count and pulls links from other online sources._
 
 ## What's included
 Within the repository you'll find the following directories and files:
@@ -27,6 +27,12 @@ gettit-spark/
 |    |          |    └──css/
 |    |          |    |   └──app.css
 |    |          |    |   └──bootstrap.css
+|    |          |    └──fonts/
+|    |          |    |   └──glyphicons-halflings-regular.eot
+|    |          |    |   └──glyphicons-halflings-regular.svg
+|    |          |    |   └──glyphicons-halflings-regular.ttf
+|    |          |    |   └──glyphicons-halflings-regular.woff
+|    |          |    |   └──glyphicons-halflings-regular.woff2
 |    |          |    └──images/
 |    |          |         └──folderinfo.txt
 |    |          └──templates/
@@ -78,9 +84,6 @@ $gradle run
 ```
 localhost:4567
 ```
-## Specifications
-_App recreates..._
-
 ## Known Bugs
 _No known bugs at this time_
 
