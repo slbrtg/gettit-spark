@@ -3,16 +3,20 @@
 #foreach ($post in $posts)
   #if($post.getType().equals("link"))
     <div class="post">
-      <h3>Link</h3>
-      <h3><a href="$post.getContent()">$post.getTitle()</a></h3>
-      <h5><a href="/subgettit/$post.getSubName()">$post.getSubName()</a>, <a href="/subgettit/$post.getSubName()/post/$post.getId()">comments</a></h5>
+      <!-- <h3>Link</h3> -->
+      <span class="glyphicon glyphicon-leaf post-votes"></span>
+      <span class="glyphicon glyphicon-fire post-img"></span>
+      <h3 class="post-title"><a href="$post.getContent()">$post.getTitle()</a></h3>
+      <h5 class="post-details"><a href="/subgettit/$post.getSubName()">$post.getSubName()</a>, <a href="/subgettit/$post.getSubName()/post/$post.getId()">comments</a></h5>
       <hr>
     </div>
   #else
     <div class="post">
-      <h3>Text Post</h3>
-      <h3><a href="/subgettit/$post.getSubName()/post/$post.getId()">$post.getTitle()</a></h3>
-      <h5><a href="/subgettit/$post.getSubName()">$post.getSubName()</a>, <a href="/subgettit/$post.getSubName()/post/$post.getId()">comments</a></h5>
+      <!-- <h3>Text Post</h3> -->
+      <span class="glyphicon glyphicon-leaf post-votes"></span>
+      <span class="glyphicon glyphicon-fire post-img"></span>
+      <h3 class="post-title"><a href="/subgettit/$post.getSubName()/post/$post.getId()">$post.getTitle()</a></h3>
+      <h5 class="post-details"><a href="/subgettit/$post.getSubName()">$post.getSubName()</a>, <a href="/subgettit/$post.getSubName()/post/$post.getId()">comments</a></h5>
       <hr>
     </div>
   #end

@@ -1,18 +1,47 @@
 <div class="home-head">
   <br>
   <h1>$user.getUsername()'s subgettits</h1>
+  <br>
+  <br>
 </div>
 
 <div id="home-body">
-  <div class="posts">
+  <div class="home-page">
     #foreach ($post in $posts)
-      <div class="post">
-        <h3><a href="/$user.getUsername()/subgettit/$post.getSubName()/post/$post.getId()">$post.getTitle()</a></h3>
-        <h5><a href="/$user.getUsername()/subgettit/$post.getSubName()">$post.getSubName()</a></h5>
-        <hr>
-      </div>
+      #if($post.getType().equals("link"))
+        <div class="post">
+          <!-- <h3>Link</h3> -->
+          <span class="glyphicon glyphicon-leaf post-votes"></span>
+          <span class="glyphicon glyphicon-fire post-img"></span>
+          <h3 class="post-title"><a href="$post.getContent()">$post.getTitle()</a></h3>
+          <h5 class="post-details"><a href="/$user.getUsername()/subgettit/$post.getSubName()">$post.getSubName()</a>, <a href="/$user.getUsername()/subgettit/$post.getSubName()/post/$post.getId()">comments</a></h5>
+          <hr>
+        </div>
+      #else
+        <div class="post">
+          <!-- <h3>Text Post</h3> -->
+          <span class="glyphicon glyphicon-leaf post-votes"></span>
+          <span class="glyphicon glyphicon-fire post-img"></span>
+          <h3 class="post-title"><a href="/$user.getUsername()/subgettit/$post.getSubName()/post/$post.getId()">$post.getTitle()</a></h3>
+          <h5 class="post-details"><a href="/$user.getUsername()/subgettit/$post.getSubName()">$post.getSubName()</a>, <a href="/$user.getUsername()/subgettit/$post.getSubName()/post/$post.getId()">comments</a></h5>
+          <hr>
+        </div>
+      #end
     #end
+    </div>
+    <div class="new-sub">
+      <div class="side-col">
+        <center id="login-signup-form">
+          <div class="login">
+            <h1 class="loginheading">Create a new sub</h1>
+              <a href="/$user.getUsername()/newSub"><button class="btn btn-primary" type="button" name="button">Create a sub</button></a>
+            <!-- ©©© COPYRIGHT ©©©--><p class="text-muted loginbottomtext">© gettit</p>
+          </div>
+        </center>
+      </div>
+    </div>
   </div>
+
   <div class="new-sub">
     <div class="side-col">
       <center id="login-signup-form">
